@@ -252,7 +252,7 @@ class TestHTTPSService(VyOSUnitTestSHIM.TestCase):
 
         mutation = """
         mutation {
-          AuthToken (data: {username: "vyos", password: "vyos"}) {
+          AuthToken (data: {username: "qnos", password: "qnos"}) {
             success
             errors
             data {
