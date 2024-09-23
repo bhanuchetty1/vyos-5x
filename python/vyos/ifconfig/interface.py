@@ -317,7 +317,7 @@ class Interface(Control):
         DEBUG:
         This class has embedded debugging (print) which can be enabled by
         creating the following file:
-        vyos@vyos# touch /tmp/vyos.ifconfig.debug
+        qnos@qnos# touch /tmp/vyos.ifconfig.debug
 
         Example:
         >>> from vyos.ifconfig import Interface

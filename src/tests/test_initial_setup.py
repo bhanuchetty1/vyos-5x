@@ -29,31 +29,31 @@ class TestInitialSetup(TestCase):
             self.xml.define(reference)
 
     def test_set_user_password(self):
-        vis.set_user_password(self.config, 'vyos', 'vyosvyos')
+        vis.set_user_password(self.config, 'qnos', 'qnosqnos')
 
         # Old password hash from the default config
         old_pw = '$6$QxPS.uk6mfo$9QBSo8u1FkH16gMyAVhus6fU3LOzvLR9Z9.82m3tiHFAxTtIkhaZSWssSgzt4v4dGAL8rhVQxTg0oAG9/q11h/'
-        new_pw = self.config.return_value(["system", "login", "user", "vyos", "authentication", "encrypted-password"])
+        new_pw = self.config.return_value(["system", "login", "user", "qnos", "authentication", "encrypted-password"])
 
         # Just check it changed the hash, don't try to check if hash is good
         self.assertNotEqual(old_pw, new_pw)
 
     def test_disable_user_password(self):
         vis.disable_user_password(self.config, 'vyos')
-        new_pw = self.config.return_value(["system", "login", "user", "vyos", "authentication", "encrypted-password"])
+        new_pw = self.config.return_value(["system", "login", "user", "qnos", "authentication", "encrypted-password"])
 
         self.assertEqual(new_pw, '!')
 
     def test_set_ssh_key_with_name(self):
-        test_ssh_key = " ssh-rsa fakedata vyos@vyos "
-        vis.set_user_ssh_key(self.config, 'vyos', test_ssh_key)
+        test_ssh_key = " ssh-rsa fakedata qnos@qnos "
+        vis.set_user_ssh_key(self.config, 'qnos', test_ssh_key)
 
-        key_type = self.config.return_value(["system", "login", "user", "vyos", "authentication", "public-keys", "vyos@vyos", "type"])
-        key_data = self.config.return_value(["system", "login", "user", "vyos", "authentication", "public-keys", "vyos@vyos", "key"])
+        key_type = self.config.return_value(["system", "login", "user", "qnos", "authentication", "public-keys", "qnos@qnos", "type"])
+        key_data = self.config.return_value(["system", "login", "user", "qnos", "authentication", "public-keys", "qnos@qnos", "key"])
 
         self.assertEqual(key_type, 'ssh-rsa')
         self.assertEqual(key_data, 'fakedata')
-        self.assertTrue(self.xml.is_tag(["system", "login", "user", "vyos", "authentication", "public-keys"]))
+        self.assertTrue(self.xml.is_tag(["system", "login", "user", "qnos", "authentication", "public-keys"]))
 
     def test_set_ssh_key_without_name(self):
         # If key file doesn't include a name, the function will use user name for the key name
@@ -61,12 +61,12 @@ class TestInitialSetup(TestCase):
         test_ssh_key = " ssh-rsa fakedata  "
         vis.set_user_ssh_key(self.config, 'vyos', test_ssh_key)
 
-        key_type = self.config.return_value(["system", "login", "user", "vyos", "authentication", "public-keys", "vyos", "type"])
-        key_data = self.config.return_value(["system", "login", "user", "vyos", "authentication", "public-keys", "vyos", "key"])
+        key_type = self.config.return_value(["system", "login", "user", "qnos", "authentication", "public-keys", "qnos", "type"])
+        key_data = self.config.return_value(["system", "login", "user", "qnos", "authentication", "public-keys", "qnos", "key"])
 
         self.assertEqual(key_type, 'ssh-rsa')
         self.assertEqual(key_data, 'fakedata')
-        self.assertTrue(self.xml.is_tag(["system", "login", "user", "vyos", "authentication", "public-keys"]))
+        self.assertTrue(self.xml.is_tag(["system", "login", "user", "qnos", "authentication", "public-keys"]))
 
     def test_create_user(self):
         vis.create_user(self.config, 'jrandomhacker', password='qwerty', key=" ssh-rsa fakedata jrandomhacker@foovax ")
@@ -77,9 +77,9 @@ class TestInitialSetup(TestCase):
         self.assertEqual(self.config.return_value(["system", "login", "user", "jrandomhacker", "level"]), "admin")
 
     def test_set_hostname(self):
-        vis.set_host_name(self.config, "vyos-test")
+        vis.set_host_name(self.config, "qnos-test")
 
-        self.assertEqual(self.config.return_value(["system", "host-name"]), "vyos-test")
+        self.assertEqual(self.config.return_value(["system", "host-name"]), "qnos-test")
 
     def test_set_name_servers(self):
         vis.set_name_servers(self.config, ["192.0.2.10", "203.0.113.20"])
