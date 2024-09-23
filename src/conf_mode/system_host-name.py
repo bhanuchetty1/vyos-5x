@@ -33,7 +33,7 @@ from vyos import airbag
 airbag.enable()
 
 default_config_data = {
-    'hostname': 'vyos',
+    'hostname': 'qnos',
     'domain_name': '',
     'domain_search': [],
     'nameserver': [],
