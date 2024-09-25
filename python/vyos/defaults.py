@@ -44,7 +44,7 @@ api_config_state = '/run/http-api-state'
 
 cfg_group = 'vyattacfg'
 
-cfg_vintage = 'vyos'
+cfg_vintage = 'qnos'
 
 commit_lock = os.path.join(directories['vyos_configdir'], '.lock')
 
