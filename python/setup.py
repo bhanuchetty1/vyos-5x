@@ -9,14 +9,14 @@ def packages(directory):
     ]
 
 setup(
-    name = "vyos",
+    name = "qnos",
     version = "1.3.0",
     author = "VyOS maintainers and contributors",
     author_email = "maintainers@vyos.net",
     description = ("VyOS configuration libraries."),
     license = "LGPLv2+",
-    keywords = "vyos",
-    url = "http://www.vyos.io",
+    keywords = "qnos",
+    url = "http://www.qnos.io",
     packages = packages('vyos'),
     long_description="VyOS configuration libraries",
     classifiers=[
