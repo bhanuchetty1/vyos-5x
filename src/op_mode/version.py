@@ -31,29 +31,9 @@ from vyos.utils.system import get_secure_boot_state
 from jinja2 import Template
 
 version_output_tmpl = """
-Version:          VyOS {{version}}
-Release train:    {{release_train}}
-Release flavor:   {{flavor}}
+Version:          QnOS {{version}}
 
-Built by:         {{built_by}}
-Built on:         {{built_on}}
-Build UUID:       {{build_uuid}}
-Build commit ID:  {{build_git}}
-{%- if build_comment %}
-Build comment:    {{build_comment}}
-{% endif %}
-
-Architecture:     {{system_arch}}
-Boot via:         {{boot_via}}
-System type:      {{system_type}}
-Secure Boot:      {{secure_boot}}
-
-Hardware vendor:  {{hardware_vendor}}
-Hardware model:   {{hardware_model}}
-Hardware S/N:     {{hardware_serial}}
-Hardware UUID:    {{hardware_uuid}}
-
-Copyright:        VyOS maintainers and contributors
+Copyright:        QnOS maintainers and contributors
 {%- if limerick %}
 {{limerick}}
 {% endif -%}
