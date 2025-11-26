@@ -2,27 +2,15 @@
 <interfaceDefinition>
   <node name="system">
     <children>
-      <node name="developer" owner="${vyos_conf_scripts_dir}/developer_name.py">
+      <leafNode name="developer" owner="${vyos_conf_scripts_dir}/system_developer.py">
         <properties>
-          <help>System developer options</help>
+          <help>System developer name</help>
           <priority>999</priority>
+          <constraint>
+            #include <include/constraint/host-name.xml.i>
+          </constraint>
         </properties>
-        <children>
-          <leafNode name="name">
-            <properties>
-              <help>Developer name</help>
-              <valueHelp>
-                <format>text</format>
-                <description>Your name</description>
-              </valueHelp>
-              <constraint>
-                <regex>.*</regex>
-              </constraint>
-              <constraintErrorMessage>Invalid name</constraintErrorMessage>
-            </properties>
-           </leafNode>
-        </children>
-      </node>
+      </leafNode>
     </children>
   </node>
 </interfaceDefinition>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<interfaceDefinition>
+  <node name="show">
+    <children>
+      <leafNode name="developer">
+        <properties>
+          <help>Show developer name</help>
+        </properties>
+        <command>${vyos_op_scripts_dir}/developer.py show</command>
+      </leafNode>
+    </children>
+  </node>
+</interfaceDefinition>
